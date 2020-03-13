@@ -3,12 +3,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.ServiceBus;
 
-namespace ServiceBus
+namespace SBQueueWriter
 {
     class Program
     {
         static IQueueClient queueClient;
-        static async Task Main(string[] args)
+        public static async Task Main(string[] args)
         {
             // Console.WriteLine("Hello World!");
             var sbconnstr = "Endpoint=sb://ashwintest.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=9QDdwVLnZ6RyYfcj67WPeFafg+Qlc1rjly1gNNJ7aSA=";
@@ -17,7 +17,7 @@ namespace ServiceBus
             await Task.Run(() =>
             {
                 queueClient = new QueueClient(sbconnstr, qname);
-                var msgCount = 2;
+                var msgCount = 100000;
 
                 try
                 {
@@ -30,7 +30,7 @@ namespace ServiceBus
                         queueClient.SendAsync(sbMessage);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine("Error: " + ex.Message + ", " + ex.StackTrace);
                 }
