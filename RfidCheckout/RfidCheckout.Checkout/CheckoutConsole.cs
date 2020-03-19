@@ -16,7 +16,7 @@ namespace RfidCheckout.Checkout
         static int ReceivedCount = 0;
         static double BillTotal = 0.0;
 
-        static bool UseMessageSessions = false;
+        static bool UseMessageSessions = true;
 
         static async Task Main(string[] args)
         {
@@ -37,11 +37,11 @@ namespace RfidCheckout.Checkout
                 new QueueDescription(AccountDetails.QueueName)
                 {
                     // Comment in to require duplicate detection
-                    //RequiresDuplicateDetection = true,
-                    //DuplicateDetectionHistoryTimeWindow = TimeSpan.FromMinutes(10),
+                    RequiresDuplicateDetection = true,
+                    DuplicateDetectionHistoryTimeWindow = TimeSpan.FromMinutes(10),
 
                     // Comment in to require sessions
-                    //RequiresSession = true
+                    RequiresSession = true
                 };
 
             // Create a queue based on the queue description.
@@ -120,13 +120,7 @@ namespace RfidCheckout.Checkout
                     Console.WriteLine
                         ("Bill customer ${0} for {1} items.", billTotal, receivedCount);
                 }
-
-
-
             }
-
-
-
         }
 
 

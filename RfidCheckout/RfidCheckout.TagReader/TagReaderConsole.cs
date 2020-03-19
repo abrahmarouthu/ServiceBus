@@ -66,8 +66,8 @@ namespace RfidCheckout.TagReader
             Console.ForegroundColor = ConsoleColor.Cyan;
 
             // Comment in to create session id
-            //var sessionId = Guid.NewGuid().ToString();
-            //Console.WriteLine($"SessionId: { sessionId }");
+            var sessionId = Guid.NewGuid().ToString();
+            Console.WriteLine($"SessionId: { sessionId }");
 
             while (position < 10)
             {
@@ -78,10 +78,10 @@ namespace RfidCheckout.TagReader
                 var tagReadMessage = new Message(Encoding.UTF8.GetBytes(orderJson));
 
                 // Comment in to set message id.
-                //tagReadMessage.MessageId = rfidTag.TagId;
+                tagReadMessage.MessageId = rfidTag.TagId;
 
                 // Comment in to set session id.
-                //tagReadMessage.SessionId = sessionId;
+                tagReadMessage.SessionId = sessionId;
 
                 // Send the message
                 await queueClient.SendAsync(tagReadMessage);
