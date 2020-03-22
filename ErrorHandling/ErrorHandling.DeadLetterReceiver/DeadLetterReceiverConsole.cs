@@ -12,7 +12,7 @@ namespace ErrorHandling.DeadLetterReceiver
     class DeadLetterReceiverConsole
     {
         private static QueueClient QueueClient;
-        // Adding some comments
+        
         static void Main(string[] args)
         {
             Utils.WriteLine("DeadLetterReceiverConsole", ConsoleColor.White);
