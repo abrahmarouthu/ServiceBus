@@ -1,8 +1,4 @@
 ﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,13 +11,10 @@ namespace ErrorHandling.Sender
     {
         private static QueueClient QueueClient;
 
-
-
         static async Task Main(string[] args)
         {
             Console.WriteLine("Sender Console");
             Console.WriteLine();
-
             Thread.Sleep(3000);
 
             QueueClient = new QueueClient(Settings.ConnectionString, Settings.QueuePath);
@@ -61,8 +54,6 @@ namespace ErrorHandling.Sender
             await QueueClient.CloseAsync();
         }
 
-
-
         static async Task SendMessage(string text, string contentType)
         {
 
@@ -81,9 +72,6 @@ namespace ErrorHandling.Sender
             }
         }
 
-
-
     }
-
 
 }
