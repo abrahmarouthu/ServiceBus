@@ -17,21 +17,15 @@ namespace ErrorHandling.DeadLetterReceiver
         {
             Utils.WriteLine("DeadLetterReceiverConsole", ConsoleColor.White);
             Console.WriteLine();
-
             Thread.Sleep(3000);
 
-
             var deadLetterPath = EntityNameHelper.FormatDeadLetterPath(Settings.QueuePath);
-
             Utils.WriteLine($"Dead letter queue path { deadLetterPath }", ConsoleColor.Cyan);
-
             QueueClient = new QueueClient(Settings.ConnectionString, deadLetterPath);
-
             ReceiveDeadLetterMessages();
 
             Utils.WriteLine("Receiving dead letter messages", ConsoleColor.Cyan);
             Console.WriteLine();
-
             Console.ReadLine();
         }
 
@@ -44,9 +38,7 @@ namespace ErrorHandling.DeadLetterReceiver
             };
 
             QueueClient.RegisterMessageHandler(ProcessDeadLetterMessage, options);
-
             Utils.WriteLine("Receiving messages", ConsoleColor.Cyan);
-
         }
 
         private static async Task ProcessDeadLetterMessage(Message message, CancellationToken token)
@@ -55,10 +47,6 @@ namespace ErrorHandling.DeadLetterReceiver
             Utils.WriteLine($"    Content type: { message.ContentType }", ConsoleColor.Green);
             Utils.WriteLine($"    DeadLetterReason: { message.UserProperties["DeadLetterReason"] }", ConsoleColor.Green);
             Utils.WriteLine($"    DeadLetterErrorDescription: { message.UserProperties["DeadLetterErrorDescription"] }", ConsoleColor.Green);
-
-
-
-
 
             Console.WriteLine();
         }
